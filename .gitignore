@@ -1,0 +1,5 @@
+*.exe
+1st
+*.out
+*.o
+cmake-build-debug/
