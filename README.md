@@ -1,1 +1,1 @@
-### starting the DSA Journey
+### Starting the DSA Journey
