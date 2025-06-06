@@ -63,5 +63,5 @@ Use structures to represent the array ADT.
 This concludes our discussion on the basics of array ADT. In the next tutorial, we’ll implement these data types in code.
 
 
-## For the full playlist, visit [codewithharry.com](https://www.codewithharry.com) or my [YouTube channel](https://www.youtube.com/@CodeWithHarry).
+## For the full playlist, visit [codewithharry.com](https://www.codewithharry.com) or his [YouTube channel](https://www.youtube.com/@CodeWithHarry).
 
