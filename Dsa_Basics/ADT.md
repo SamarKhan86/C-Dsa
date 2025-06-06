@@ -1,4 +1,3 @@
-````markdown name=arrays-and-abstract-data-types.md
 # Arrays and Abstract Data Types in Data Structure
 
 Welcome! Today, we learnt about **Abstract Data Types (ADT)** and their relationship with arrays. This is an introductory guide.
