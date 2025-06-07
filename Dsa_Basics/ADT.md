@@ -1,67 +1,62 @@
-# Arrays and Abstract Data Types in Data Structure
+# Array as An Abstract Data Type in Data Structures (With Notes)
 
-Welcome! Today, we learnt about **Abstract Data Types (ADT)** and their relationship with arrays. This is an introductory guide.
-
----
-
-## Abstract Data Types (ADT)
-
-**Abstract Data Types (ADT)** are a way of classifying data structures. They provide a minimal expected interface and a set of methods, much like a blueprint for a building or a computer. The blueprint lays out all the minimum requirements and the roadmap for the task ahead.
+**From what I learned (after watching CodeWithHarry's video):**
 
 ---
 
-## Array as an ADT
+## Quick Revision: What is an Abstract Data Type (ADT)?
 
-An **array ADT** holds a collection of elements (such as `int`, `float`, or custom types), accessible by their index.
-
-### 1. Minimal Required Functionality
-
-Arrays provide two basic functionalities:
-
-- **get(i)** – Retrieve the element at index `i`.
-- **set(i, num)** – Assign the value `num` to index `i`.
-
-### 2. Common Operations
-
-Beyond the basic operations, here are some additional operations commonly performed on arrays:
-
-- **Max()**: Find the maximum element.
-- **Min()**: Find the minimum element.
-- **Search(num)**: Search for the element `num`.
-- **Insert(i, num)**: Insert `num` at index `i`.
-- **Append(x)**: Add `x` to the end of the array.
+An abstract data type (ADT) is like another data type, just like `int` or `float`, but with some user-defined methods and operations. It’s basically a customized data type where you define what you want to do with it.
 
 ---
 
-## Static vs. Dynamic Arrays
+## Implementing Array as an ADT
 
-- **Static Arrays**: The size of the array cannot be changed after creation.
-- **Dynamic Arrays**: The size of the array can be changed (expanded or shrunk).
+Now, instead of just using normal arrays, we can actually build a customized array with our own set of values and operations, and even manage it in the heap. For this, let’s call our new custom array: **myArray**.
+
+### The "myArray" Blueprint
+
+**myArray** should have the following parameters (values):
+
+- `total_size`: How much memory we have reserved for the array.
+- `used_size`: How much of that memory is actually being used.
+- `base_address`: A pointer to the first element of the array.
+
+And the following operations (methods):
+
+- `max()`: Returns the maximum value in the array.
+- `get(i)`: Gets the value at index `i`.
+- `set(i, num)`: Sets the value at index `i` to `num`.
+- `add(another_array)`: Adds the values of another array to this one.
 
 ---
 
-## Quick Quiz
+## What Do These Parameters and Operations Mean?
 
-**Task:**  
-Code the operations mentioned above in C language by creating an array ADT.
-
-**Hint:**  
-Use structures to represent the array ADT.
+- **total_size**: The total amount of memory reserved for the array, even if not all is used.
+- **used_size**: The number of elements currently being used in the array.
+- **base_address**: The starting memory address of the array (pointer to the first element).
 
 ---
 
-## Memory Representation of Arrays
+## Example Illustration
 
-- Elements in an array are stored in contiguous memory locations.
-- Elements can be accessed in constant time `O(1)` using the base address and index.
-- Changing the size of an array isn’t directly possible, but you can reallocate to a larger memory location. (Resizing is a costly operation.)
+Suppose we have an array stored in memory like this:
+
+| Index | 0 | 1 | 2 | 3 | 4 | 5 |
+|-------|---|---|---|---|---|---|
+| Value | 5 | 8 | 2 |   |   |   |
+
+- If `total_size` is 6, it means we reserved space for 6 elements.
+- If `used_size` is 3, it means only the first 3 elements are being used (5, 8, 2).
+- `base_address` points to the memory address of the first element (5).
 
 ---
 
 ## Summary
 
-This concludes our discussion on the basics of array ADT. In the next tutorial, we’ll implement these data types in code.
+So, by defining our own parameters and methods, we can create a custom array (like `myArray`) as an abstract data type (ADT). This lets us control how much space we use, keep track of what’s filled, and create our own operations for working with the data.
 
+*Next, I’ll try to implement these ideas in code, just like Harry does in his tutorials!*
 
-## For the full playlist, visit [codewithharry.com](https://www.codewithharry.com) or his [YouTube channel](https://www.youtube.com/@CodeWithHarry).
-
+---
