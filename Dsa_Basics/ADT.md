@@ -1,62 +1,140 @@
-# Array as An Abstract Data Type in Data Structures (With Notes)
+# Implementing Array as an Abstract Data Type in C Language (Personal Notes)
 
-**From what I learned (after watching CodeWithHarry's video):**
+## What I Learned from Harry's Tutorial
 
----
-
-## Quick Revision: What is an Abstract Data Type (ADT)?
-
-An abstract data type (ADT) is like another data type, just like `int` or `float`, but with some user-defined methods and operations. It’s basically a customized data type where you define what you want to do with it.
+In the last tutorial, I learned about the blueprint for a customized abstract data type called `myArray`. This time, I learned how to actually implement that array ADT in C using structures and some basic functions.
 
 ---
 
-## Implementing Array as an ADT
+## Editor & Compiler Recommendations
 
-Now, instead of just using normal arrays, we can actually build a customized array with our own set of values and operations, and even manage it in the heap. For this, let’s call our new custom array: **myArray**.
-
-### The "myArray" Blueprint
-
-**myArray** should have the following parameters (values):
-
-- `total_size`: How much memory we have reserved for the array.
-- `used_size`: How much of that memory is actually being used.
-- `base_address`: A pointer to the first element of the array.
-
-And the following operations (methods):
-
-- `max()`: Returns the maximum value in the array.
-- `get(i)`: Gets the value at index `i`.
-- `set(i, num)`: Sets the value at index `i` to `num`.
-- `add(another_array)`: Adds the values of another array to this one.
+Harry recommends using the MinGW w64-bit compiler for compiling C programs and VS Code as the editor. VS Code is great because it supports a lot of languages and is very versatile. If you need help setting things up, you can check out his YouTube video for a walkthrough.
 
 ---
 
-## What Do These Parameters and Operations Mean?
+## Steps in the Implementation
 
-- **total_size**: The total amount of memory reserved for the array, even if not all is used.
-- **used_size**: The number of elements currently being used in the array.
-- **base_address**: The starting memory address of the array (pointer to the first element).
+### 1. Define the Structure
+
+First, we create a structure to represent our custom array. In C, we use `struct` to define a new data type. The structure for `myArray` includes:
+
+- `total_size`: total memory reserved for the array
+- `used_size`: how much of that memory is actually used
+- `ptr`: a pointer to the first element of the array (base address)
+
+### 2. Functions to Operate on myArray
+
+#### a) `createArray`
+
+This function initializes a `myArray` object. It takes the address of a struct and the sizes, assigns them to the struct members, and uses `malloc` to allocate memory on the heap for the array.
+
+```c
+void createArray(struct myArray * a, int tSize, int uSize){
+    a->total_size = tSize;
+    a->used_size = uSize;
+    a->ptr = (int *)malloc(tSize * sizeof(int));
+}
+```
+
+#### b) `show`
+
+This function prints all the elements in the array up to `used_size`.
+
+```c
+void show(struct myArray *a){
+    for (int i = 0; i < a->used_size; i++) {
+        printf("%d\n", (a->ptr)[i]);
+    }
+}
+```
+
+#### c) `setVal`
+
+This function allows the user to input values for the array. It loops up to `used_size` and uses `scanf` to set each value.
+
+```c
+void setVal(struct myArray *a){
+    int n;
+    for (int i = 0; i < a->used_size; i++) {
+        printf("Enter element %d: ", i);
+        scanf("%d", &n);
+        (a->ptr)[i] = n;
+    }
+}
+```
 
 ---
 
-## Example Illustration
+## Complete Code Example
 
-Suppose we have an array stored in memory like this:
+Here's the full code from the tutorial:
 
-| Index | 0 | 1 | 2 | 3 | 4 | 5 |
-|-------|---|---|---|---|---|---|
-| Value | 5 | 8 | 2 |   |   |   |
-
-- If `total_size` is 6, it means we reserved space for 6 elements.
-- If `used_size` is 3, it means only the first 3 elements are being used (5, 8, 2).
-- `base_address` points to the memory address of the first element (5).
+```c
+#include<stdio.h>
+#include<stdlib.h>
+ 
+struct myArray
+{
+    int total_size;
+    int used_size;
+    int *ptr;
+};
+ 
+void createArray(struct myArray * a, int tSize, int uSize){
+    a->total_size = tSize;
+    a->used_size = uSize;
+    a->ptr = (int *)malloc(tSize * sizeof(int));
+}
+ 
+void show(struct myArray *a){
+    for (int i = 0; i < a->used_size; i++) {
+        printf("%d\n", (a->ptr)[i]);
+    }
+}
+ 
+void setVal(struct myArray *a){
+    int n;
+    for (int i = 0; i < a->used_size; i++) {
+        printf("Enter element %d: ", i);
+        scanf("%d", &n);
+        (a->ptr)[i] = n;
+    }
+}
+ 
+int main(){
+    struct myArray marks;
+    createArray(&marks, 10, 2);
+    printf("We are running setVal now\n");
+    setVal(&marks);
+ 
+    printf("We are running show now\n");
+    show(&marks);
+ 
+    return 0;
+}
+```
 
 ---
 
-## Summary
+## Output Example
 
-So, by defining our own parameters and methods, we can create a custom array (like `myArray`) as an abstract data type (ADT). This lets us control how much space we use, keep track of what’s filled, and create our own operations for working with the data.
-
-*Next, I’ll try to implement these ideas in code, just like Harry does in his tutorials!*
+```
+Enter element 0: 12
+Enter element 1: 13
+We are running show now
+12
+13
+```
 
 ---
+
+## Reflection
+
+With this, I now understand how to define a custom array data type in C using structures, how to allocate memory for it, set values, and display its contents. Harry's explanation made it much easier to follow, even if some syntax was new.
+
+If you want more details or need help with C basics, check out Harry's C playlist on YouTube or visit [codewithharry.com](https://www.codewithharry.com).
+
+---
+
+> These are my notes based on Harry's tutorial, rewritten in my own words for better understanding!
+````
