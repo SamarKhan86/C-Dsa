@@ -19,11 +19,15 @@ int indInsertion(int arr[], int size, int index, int element, int capacity){
 int main(){
 	int arr[100] = {2, 5, 6, 9, 80};
 	int size = 5, element = 40, index = 3;
-	printf("The array before insertion\n");
+	printf("The array before insertion- \n");
 	display(arr, size);
-	printf("The array after insertion\n");
-	indInsertion(arr, size, index, element, 100); //100 here is the capacity of the array
+	int result = indInsertion(arr, size, index, element, 100); //100 here is the capacity of the array
+	if(result == 1)
+		printf("Element was inserted Successfully.\n");
+	else
+		printf("Insertion failed\n");
 	size+= 1;
+	printf("The array after insertion- \n");
 	display(arr, size);
 	return 0;
 }
