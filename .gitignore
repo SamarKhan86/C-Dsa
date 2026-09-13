@@ -3,3 +3,6 @@
 *.out
 *.o
 cmake-build-debug/
+
+# C compiled executables
+Threads/pthread1
