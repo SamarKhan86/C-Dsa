@@ -10,12 +10,14 @@ void *routine(void *args) {
 
 int main() {
   pthread_t t1, t2; 
-  pthread_create(&t1, NULL, &routine, NULL);
-  pthread_create(&t2, NULL, &routine, NULL);
+  int i, j, k, l;
+  i = pthread_create(&t1, NULL, &routine, NULL);
+  j = pthread_create(&t2, NULL, &routine, NULL);
 
-  pthread_join(t1, NULL);
-  pthread_join(t2, NULL); //tells main() to wait for t1 to complete
+  k = pthread_join(t1, NULL);
+  l = pthread_join(t2, NULL); //tells main() to wait for t1 to complete
 
+  printf("%d %d %d %d\n",i, j, k, l);
   printf("Main function\n");
   return 0;
 
